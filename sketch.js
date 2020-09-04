@@ -1,10 +1,11 @@
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
+const Constraint = Matter.Constraint;
 
 var engine, world;
 var box1, pig1;
-var backGroundImage
+var backGroundImage,constrain
 
 function preload(){
 
@@ -18,7 +19,7 @@ function setup(){
     world = engine.world;
 
     
-    ground = new Ground(600,height,1200,20)
+    ground = new Ground(600,height,1200,20);
 
     box1 = new Box(700,320,70,70);
     box2 = new Box(920,320,70,70);
@@ -38,15 +39,14 @@ function setup(){
     log5 = new Log(870,120,150, -PI/7);
 
     bird = new Bird(100,100);
+    log6 = new Log(100,100,150,PI/2);
+    constrain=new ConstraintClass(bird.body,log6.body);
 
 }
 
 function draw(){
     background(backGroundImage);
     Engine.update(engine);
-    console.log(box2.body.position.x);
-    console.log(box2.body.position.y);
-    console.log(box2.body.angle);
 
     box1.display();
     box2.display();
@@ -63,6 +63,8 @@ function draw(){
     box5.display();
     log4.display();
     log5.display();
+    log6.display();
 
     bird.display();
+    constrain.display();
 }
